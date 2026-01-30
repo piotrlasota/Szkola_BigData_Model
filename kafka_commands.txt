@@ -1,0 +1,30 @@
+konfiguracja
+
+server.properties:
+log.dirs=C:/DEV/kafka/kafka_2.13-4.1.1/logs
+controller.quorum.voters=1@localhost:9093
+
+utworzenie katalogu logs zgodnie z konfig powyżej w C:/DEV/kafka/kafka_2.13-4.1.1
+
+1. consola#1 konfiguracja serwera kafki:
+bin\windows\kafka-storage.bat random-uuid
+bin\windows\kafka-storage.bat format -t <uuid> -c config\server.properties
+bin\windows\kafka-server-start.bat config\server.properties
+
+2. consola#2 konfiguracja topicow:
+bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --create --topic concrete.model.request --partitions 1 --replication-factor 1
+bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --create --topic concrete.model.respone --partitions 1 --replication-factor 1
+
+pomocnicze:
+#sprawdzenie czy server kafki działa
+bin\windows\kafka-broker-api-versions.bat --bootstrap-server localhost:9092
+#sprawdzenie istniejących topicow
+bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list
+
+
+3(opcjonalne). reczne podlaczenie się do topicow, wyslanie, odebranie wiadomosci
+consola#3 producer:
+bin\windows\kafka-console-producer.bat --bootstrap-server localhost:9092 --topic concrete.model.request
+
+consola#4 consumer:
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic concrete.model.request --from-beginning
