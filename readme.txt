@@ -7,10 +7,10 @@ python kafka_interface.py
 
 metryki concrete_en206_classification_model
 Model: rf
-Accuracy:          0.5146198830409356
-F1 (weighted):     0.5152663289425821
-WeightedPrecision: 0.530740044555834
-WeightedRecall:    0.5146198830409356
+Accuracy:          0.4502923976608187
+F1 (weighted):     0.44704104233190106
+WeightedPrecision: 0.47525819379366296
+WeightedRecall:    0.4502923976608187
 
 Rows: 1030
 Class distribution:

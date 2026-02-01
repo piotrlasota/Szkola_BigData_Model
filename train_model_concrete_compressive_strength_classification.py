@@ -81,11 +81,19 @@ assembler = VectorAssembler(inputCols=feature_cols, outputCol="features", handle
 MODEL = "rf"  # "lr" / "rf"
 
 if MODEL == "lr":
-    clf = LogisticRegression(featuresCol="features", labelCol="label", maxIter=200, regParam=0.0)
+    clf = LogisticRegression(
+        featuresCol="features", 
+        labelCol="label", 
+        maxIter=200, 
+        regParam=0.0)
 elif MODEL == "rf":
     clf = RandomForestClassifier(
-        featuresCol="features", labelCol="label",
-        numTrees=300, maxDepth=12, subsamplingRate=0.8, seed=42
+        featuresCol="features", 
+        labelCol="label",
+        numTrees=100, 
+        maxDepth=10, 
+        subsamplingRate=1, 
+        seed=42
     )
 else:
     raise ValueError("MODEL musi być jednym z: 'lr', 'rf'")
